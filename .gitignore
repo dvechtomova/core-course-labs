@@ -1,0 +1,8 @@
+.vscode
+.pytest_cache
+/app_rust/target
+__pycache__
+.terraform
+terraform.tfstate
+terraform.tfstate.backup
+.terraform.lock.hcl
