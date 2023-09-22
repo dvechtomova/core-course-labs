@@ -1,0 +1,4 @@
+- name: lab5 docker
+  hosts: all
+  roles:
+    - docker
