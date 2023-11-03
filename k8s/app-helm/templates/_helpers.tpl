@@ -60,3 +60,29 @@ Create the name of the service account to use
 {{- default "default" .Values.serviceAccount.name }}
 {{- end }}
 {{- end }}
+
+{{/*
+Define secret envs
+*/}}
+{{- define "app-helm.mapenvsecrets" -}}
+{{- if .Values.password.existingSecret }}
+- name: PASSWORD
+  valueFrom:
+    secretKeyRef:
+      name: {{ .Values.password.existingSecret }}
+      key: {{ .Values.password.existingSecretKey }}
+{{- else }}
+- name: PASSWORD
+  value: ""
+{{- end }}
+{{- if .Values.token.existingSecret }}
+- name: TOKEN
+  valueFrom:
+    secretKeyRef:
+      name: {{ .Values.token.existingSecret }}
+      key: {{ .Values.token.existingSecretKey }}
+{{- else }}
+- name: TOKEN
+  value: ""
+{{- end }}
+{{- end	}}

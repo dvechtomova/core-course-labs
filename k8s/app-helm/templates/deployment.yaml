@@ -40,6 +40,8 @@ spec:
             - name: http
               containerPort: {{ .Values.service.port }}
               protocol: TCP
+          env:
+            {{- include "app-helm.mapenvsecrets" . | indent 12 }}
           livenessProbe:
             httpGet:
               path: /
